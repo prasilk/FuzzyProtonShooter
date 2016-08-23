@@ -1,7 +1,8 @@
-// FIRST PERSON SHOOTER demo v1
+// FUZZY PROTON SHOOTER demo v1
 //------------------------------------------------
 // Prasil Koirala <prasilkoirala@hotmail.com>
 // Free License
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
