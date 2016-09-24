@@ -1,4 +1,4 @@
-// FUZZY PROTON SHOOTER demo v1
+// FUZZY PROTON SHOOTER
 //------------------------------------------------
 // Prasil Koirala <prasilkoirala@hotmail.com>
 // Free License
@@ -10,13 +10,16 @@
 #include <GL/glut.h>
 
 
-float dist;
-int i,j;
+float dist; //distance of player from the blob
+int i,j; //counters
+
 // angle of rotation for the camera direction
 float angle = 0.0f;
 float jumpvar = 1.0;
+
 // actual vector representing the camera's direction
 float lx=0.0f,lz=-1.0f;
+
 // XZ position of the camera
 float x=5.0,y=5.0,z=0.8;
 
@@ -30,7 +33,7 @@ float deltaMove = 0;
 float deltaright = 0.0f;
 int xOrigin = -0.5;
 
-char letterx = '+';
+char letterx = '+'; //AIM 
 
 void changeSize(int w, int h) {
 
@@ -58,7 +61,6 @@ void changeSize(int w, int h) {
 }
 
 void drawtree() {
-
 	glColor3f(0.188f, 0.143f, 0.143f);
 	glTranslatef(0.0f ,3.0f, 0.0f);
 	GLUquadricObj *quadratic;
@@ -68,12 +70,9 @@ void drawtree() {
 	gluCylinder(quadratic,0.2f,0.3f,5.5f,32,32);
 	glColor3f(0.0f, 0.3f, 0.0f);
 	glutSolidSphere(1.0,32,32);
-
-
 }
 
 void computePos(float deltaMove) {
-
 	x += deltaMove * lx * 0.1f;
 	z += deltaMove * lz * 0.1f;
 }
@@ -101,10 +100,10 @@ int score=0;
 
 void colorchange() {
 	if ((dist<20) && (dist>10)) {
-	br=1.0;
-	bg=0.0;
-	printf("You scored a point man!\n");
-	printf("Total Score : %d \n\n",++score);
+		br=1.0;
+		bg=0.0;
+		printf("You scored a point!\n");
+		printf("Total Score : %d \n\n",++score);
 	}
 }
 
@@ -123,6 +122,7 @@ void colororiginal() {
 	bg=1.0;
 }
 
+//spawn blobs
 void enemy() {
 	glPushMatrix();
 	glTranslatef(pos1,pos2,pos3);
@@ -132,6 +132,8 @@ void enemy() {
 }
 	float updateby;
 
+
+//randomise enemy positions and movement
 void upenemy() {
 	int random=rand()%4;
 	int randomiser=rand()%5;
@@ -167,6 +169,7 @@ void destroyline() {
 	ypos3=0;
 }
 
+//used for calculating distances
 void createline() {
 	xpos1=pos1;
 	xpos2=pos2;
@@ -178,15 +181,10 @@ void createline() {
 
 
 void drawline() {
-
 	dist = sqrt(((xpos1-(x+lx))*(xpos1-(x+lx)))+(xpos3-(z+lz))*(xpos3-(z+lz)));
-
 }
 
 void renderScene(void) {
-
-
-
 	if (deltaMove)
 		computePos(deltaMove);
 	if(deltaleft)
@@ -250,8 +248,6 @@ int jumpup () {
 	jumpdown();
 	return 0;
 }
-
-
 
 void pressKey(unsigned char key, int xx, int yy) {
 
