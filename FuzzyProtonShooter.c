@@ -285,7 +285,7 @@ int main(int argc, char **argv) {
 	glClearColor(0.0, 0.6,1.0, 0.0);
 	glColor3f(1.0f, 0.0f, 1.0f);
 
-	// register callbacks
+	// register callbacks after
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
 	glutIdleFunc(renderScene);
